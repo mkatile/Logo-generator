@@ -1,25 +1,25 @@
-const fs = require('./node_modules/graceful-fs/graceful-fs')
+const fs = require('fs');
 const inquirer = require("inquirer");
 const {Circle, Square, Triangle} = require("./lib/shapes");
 
-class Svg{
-    constructor(){
-        this.textElement = ''
-        this.shapeElement = ''
-    }
-	render(){
 
-        return `<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="300" height="200">${this.shapeElement}${this.textElement}</svg>`
+class Svg {
+    constructor() {
+        this.textElement = '';
+        this.shapeElement = '';
     }
 
-    setTextElement(text,color){
-        this.textElement = `<text x="150" y="125" font-size="60" text-anchor="middle" fill="${color}">${text}</text>`
+    render() {
+        return `<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="300" height="200">${this.shapeElement}${this.textElement}</svg>`;
     }
-    setShapeElement(shape){
-        this.shapeElement = shape.render()
 
+    setTextElement(text, color) {
+        this.textElement = `<text x="150" y="125" font-size="60" text-anchor="middle" fill="${color}">${text}</text>`;
     }
-    
+
+    setShapeElement(shape) {
+        this.shapeElement = shape.render();
+    }
 }
 
 // Each question is an object that specifies the properties of TEXT, TEXT COLOR, SHAPE COLOR, and Pixel Image.
@@ -49,17 +49,10 @@ const questions = [
 
 // Function to write data to file
 function writeToFile(fileName, data) {
-	console.log("Writing [" + data + "] to file [" + fileName + "]")
-    fs.writeFile(fileName, data, function (err) {
-        if (err) {
-            return console.log(err);
-        }
-        console.log("Generated a logo.svg");
-    });
+    fs.writeFile(fileName, data, (err) => 
+	  err ? console.error(err) : console.log("Generated a logo.svg")
+    );
 }
-
-
-
 async function init() {
     console.log("Starting init");
 	var svgString = "";
@@ -104,21 +97,17 @@ async function init() {
 	else {
 		console.log("Invalid shape!");
 	}
-	user_shape.setColor(user_shape_color);
-
 	// Create a new Svg instance and add the shape and text elements to it
-	var svg = new Svg();
-	svg.setTextElement(user_text, user_font_color);
-	svg.setShapeElement(user_shape);
-	svgString = svg.render();
-	
+	const svg = new Svg();
+    svg.setTextElement('SVG', 'white');
+    svg.setShapeElement(new Circle(80, 'green'));
+    console.log(svg.render());
+
 	//Print shape to log
 	console.log("Displaying shape:\n\n" + svgString);
-	//document.getElementById("svg_image").innerHTML = svgString;
-
 	console.log("Shape generation complete!");
-	console.log("Writing shape to file...");
-	writeToFile(svg_file, svgString); 
-}
+	
+	fs.writeFileSync('logo.svg', svg.render(), 'utf8');
 
+}
 init();
