@@ -11,7 +11,7 @@ node index.js
 ```
 
 ## Link
-Because this application won’t be deployed, here is the [link] (https://drive.google.com/file/d/1pYBmnReIpdAzQMbH5h5p5xIF4VmtuFhq/view?usp=sharing) to a walkthrough video that demonstrates its functionality and passes all of the tests. 
+Because this application won’t be deployed, here is the [link] (doc:https://drive.google.com/file/d/1pYBmnReIpdAzQMbH5h5p5xIF4VmtuFhq/view?usp=sharing) to a walkthrough video that demonstrates its functionality and passes all of the tests. 
 
 
 
