@@ -1,0 +1,27 @@
+{
+  "name": "SVG-Logo-Generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mkatile/Logo-generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mkatile/Logo-generator.git"
+  },
+  "dependencies": {
+    "ds-store": "^0.1.6",
+    "fs": "^0.0.1-security",
+    "inquirer": "^8.2.4",
+    "jest": "^29.7.0"
+  }
+}
